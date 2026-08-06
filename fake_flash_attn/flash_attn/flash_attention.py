@@ -43,10 +43,11 @@ def flash_attn_func(
             attn_mask=None,
             dropout_p=dropout_p if dropout_p > 0.0 and torch.is_grad_enabled() else 0.0,
             is_causal=causal,
+            scale=scale,
         )
 
     # Rearrange back to [batch, seqlen, heads, dim]
-    output = output.permute(0, 2, 1, 3)
+    output = output.permute(0, 2, 1, 3).contiguous()
 
     if return_attn_probs:
         print("Warning: return_attn_probs=True not supported with chunked attention")

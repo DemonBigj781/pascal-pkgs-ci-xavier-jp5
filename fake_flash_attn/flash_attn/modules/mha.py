@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from torch.nn import functional as F
 from torch.utils.checkpoint import checkpoint
 from flash_attn.flash_attention import flash_attn_func
 import torch.cuda.amp
